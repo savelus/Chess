@@ -154,12 +154,37 @@ namespace Chess
 
         public char ShortName => 'K';
 
+        public King(bool isWhite)
+        {
+            IsWhite = isWhite;
+        }
+
         public bool IsCorrectMove(Point start, Point end, Board board)
         {
             return CheckEndPoint(end, board, IsWhite)
                 && (((start.X == end.X) && Math.Abs(start.Y - end.Y) == 1)
                     || ((start.Y == end.Y) && Math.Abs(start.X - end.X) == 1)
                     || (Math.Abs(start.X - end.X) == 1 && Math.Abs(start.Y - end.Y) == 1));
+        }
+    }
+
+    public class Queen : Figure, IFigure
+    {
+        public bool IsWhite { get; set; }
+
+        public char ShortName => 'K';
+
+        public Queen(bool isWhite)
+        {
+            
+            IsWhite = isWhite;
+        }
+
+        public bool IsCorrectMove(Point start, Point end, Board board)
+        {
+            return CheckEndPoint(end, board, IsWhite)
+                && (start.X == end.X || start.Y == end.Y || Math.Abs(start.X - end.X) == Math.Abs(start.Y - end.Y))
+                && CheckLine(start, end, board);
         }
     }
 }
