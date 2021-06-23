@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 
 namespace Chess
 {
     public class Cell
     {
         public bool IsEmpty { get; set; } = true;
-        public IFigure FigureInCell { get; set; }
+        public Figure FigureInCell { get; set; }
     }
     public class Board
     {
@@ -17,6 +18,7 @@ namespace Chess
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                     Field[i, j] = new Cell();
+            ArrangeFiguresToStart();
         }
 
         public void ArrangeFiguresToStart()
@@ -30,6 +32,19 @@ namespace Chess
             }
             ArrangeLineFigures(true);
             ArrangeLineFigures(false);
+        }
+
+        public Point GetFigureCoordinate(Figure figure)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (Field[i, j].FigureInCell == figure)
+                        return new Point() { X = i, Y = j };
+                }
+            }
+            return default;
         }
 
         private void ArrangeLineFigures(bool isWhite)
