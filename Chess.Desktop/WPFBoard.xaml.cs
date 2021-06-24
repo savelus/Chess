@@ -13,20 +13,14 @@ using Point = System.Drawing.Point;
 
 namespace Chess.Desktop
 {
-    /// <summary>
-    /// Логика взаимодействия для WPFBoard.xaml
-    /// </summary>
     public partial class WPFBoard : Window
     {
         Board board = new Board();
-        BoardDrawer drawer;
         Point? startPoint = null;
         public WPFBoard()
         {
             InitializeComponent();
-            drawer = new BoardDrawer();
             GetCells();
-
         }
 
         private void GetCells()
@@ -38,8 +32,6 @@ namespace Chess.Desktop
                 for (int i = 0; i < 8; i++)
                 {
                     Border border = new Border();
-                    //border.HorizontalAlignment = HorizontalAlignment.Center;
-                    //border.VerticalAlignment = VerticalAlignment.Center;
                     border.MouseDown += Border_MouseDown;
                     Figure figure = board.Field[i, j].FigureInCell;
                     border.Background = (i + j) % 2 == 0 ? Brushes.Black : Brushes.White;
@@ -54,15 +46,14 @@ namespace Chess.Desktop
                             HorizontalContentAlignment = HorizontalAlignment.Center,
                             VerticalAlignment = VerticalAlignment.Center,
                             HorizontalAlignment = HorizontalAlignment.Center
-                            
                         };
                     }
                     else
                     {
                         border.DataContext = new Point() { X = i, Y = j };
                     }
-                        BoardCanvas.Children.Add(border);
 
+                    BoardCanvas.Children.Add(border);
                 }
             }
         }
@@ -91,10 +82,8 @@ namespace Chess.Desktop
                 figure = board.Field[startPoint.Value.X, startPoint.Value.Y].FigureInCell;
                 if (figure.IsCorrectMove(startPoint.Value, position, board))
                 {
-                    board.Field[startPoint.Value.X, startPoint.Value.Y].FigureInCell = null;
-                    board.Field[startPoint.Value.X, startPoint.Value.Y].IsEmpty = true;
-                    board.Field[position.X, position.Y].FigureInCell = figure;
-                    board.Field[position.X, position.Y].IsEmpty = false;
+                    board.MoveFigure(startPoint.Value, position, figure);
+                    
 
                     GetCells();
                     GetBorderSize(BoardCanvas);

@@ -26,7 +26,6 @@ namespace Chess.Desktop
         private void ClickNewGame(object sender, RoutedEventArgs e)
         {
             var wpfBoard = new WPFBoard();
-            wpfBoard.Topmost = true;
             wpfBoard.Show();
         }
     }

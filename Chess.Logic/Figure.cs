@@ -68,7 +68,6 @@ namespace Chess
 
         public override bool IsWhite { get; set; }
 
-        //public readonly bool IsWhite;
         public Pawn(bool isWhite)
         {
             IsWhite = isWhite;

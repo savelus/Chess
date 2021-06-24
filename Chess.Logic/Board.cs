@@ -47,6 +47,13 @@ namespace Chess
             return default;
         }
 
+        public void MoveFigure(Point startPoint, Point endPoint, Figure figure)
+        {
+            Field[startPoint.X, startPoint.Y].FigureInCell = null;
+            Field[startPoint.X, startPoint.Y].IsEmpty = true;
+            Field[endPoint.X, endPoint.Y].FigureInCell = figure;
+            Field[endPoint.X, endPoint.Y].IsEmpty = false;
+        }
         private void ArrangeLineFigures(bool isWhite)
         {
             int line = isWhite ? 0 : 7;
