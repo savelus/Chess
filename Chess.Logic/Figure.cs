@@ -29,11 +29,27 @@ namespace Chess
             }
             else
             {
-                for (int i = Math.Min(start.X, end.X) + 1; i < Math.Max(start.X, end.X); i++)
+                if ((start.X < end.X && start.Y < end.Y) || (start.X > end.X && start.Y > end.Y))
                 {
-                    for (int j = Math.Min(start.Y, end.Y) +1; j < Math.Max(start.Y, end.Y); j++)
+                    
+                    for (int i = Math.Min(start.X, end.X) + 1; i < Math.Max(start.X, end.X);)
                     {
-                        if (!board.Field[i, j].IsEmpty) return false;
+                        for (int j = Math.Min(start.Y, end.Y) + 1; j < Math.Max(start.Y, end.Y); j++)
+                        {
+                            if (!board.Field[i, j].IsEmpty) return false;
+                            i++;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = Math.Min(start.X, end.X) + 1; i < Math.Max(start.X, end.X); i++)
+                    {
+                        for (int j = Math.Max(start.Y, end.Y) - 1; j > Math.Min(start.Y, end.Y) ; j--)
+                        {
+                            if (!board.Field[i, j].IsEmpty) return false;
+                            i++;
+                        }
                     }
                 }
             }

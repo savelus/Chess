@@ -38,8 +38,8 @@ namespace Chess.Desktop
                 for (int i = 0; i < 8; i++)
                 {
                     Border border = new Border();
-                    border.HorizontalAlignment = HorizontalAlignment.Center;
-                    border.VerticalAlignment = VerticalAlignment.Center;
+                    //border.HorizontalAlignment = HorizontalAlignment.Center;
+                    //border.VerticalAlignment = VerticalAlignment.Center;
                     border.MouseDown += Border_MouseDown;
                     Figure figure = board.Field[i, j].FigureInCell;
                     border.Background = (i + j) % 2 == 0 ? Brushes.Black : Brushes.White;

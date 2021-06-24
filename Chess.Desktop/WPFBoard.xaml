@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chess.Desktop"
         mc:Ignorable="d"
-        Title="WPFBoard" Height="816" Width="800">
+        Title="WPFBoard" Height="616" Width="600">
     <Grid>
         <Canvas x:Name="BoardCanvas" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SizeChanged="BoardCanvas_SizeChanged">
         </Canvas>
