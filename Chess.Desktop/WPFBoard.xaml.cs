@@ -73,6 +73,7 @@ namespace Chess.Desktop
             {
                 position = (Point)border.DataContext;
             }
+
             if (startPoint == null)
             {
                 startPoint = position;
@@ -83,15 +84,11 @@ namespace Chess.Desktop
                 if (figure.IsCorrectMove(startPoint.Value, position, board))
                 {
                     board.MoveFigure(startPoint.Value, position, figure);
-                    
-
                     GetCells();
                     GetBorderSize(BoardCanvas);
-                    
                 }
                 startPoint = null;
             }
-            
         }
 
         private void GetBorderSize(Canvas canvas)
